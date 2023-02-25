@@ -1,6 +1,6 @@
 ﻿using Sandbox;
 
-namespace Storm;
+namespace Sandbox;
 
 public partial class StormGame : GameManager
 {

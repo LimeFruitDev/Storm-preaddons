@@ -24,7 +24,7 @@
     "ProjectTemplate": null,
     "CsProjName": "",
     "Compiler": {
-      "RootNamespace": "Storm",
+      "RootNamespace": "Sandbox",
       "DefineConstants": "SANDBOX;ADDON;DEBUG",
       "NoWarn": "1701;1702;1591;"
     }
