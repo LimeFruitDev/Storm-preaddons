@@ -1,8 +1,11 @@
-﻿namespace Sandbox;
+﻿using Sandbox.Diagnostics;
+
+namespace Sandbox;
 
 public partial class StormGame : GameManager
 {
 	public static StormGame Instance => (StormGame)Current;
+	public static Logger Log = new( "Storm" );
 
 	public StormGame()
 	{
@@ -40,6 +43,12 @@ public partial class StormGame : GameManager
 	public override void ClientDisconnect( IClient client, NetworkDisconnectionReason reason )
 	{
 		Event.Run( StormEvent.ClientDisconnect, client, reason );
+
+		if ( reason != NetworkDisconnectionReason.DISCONNECT_BY_USER )
+		{
+			var reasonId = ((int)reason).ToString( "X8" );
+			Log.Warning( $"Client {client.Name}(${client.SteamId}) was disconnected with reason: {reason.GetName()} (0x{reasonId})." );
+		}
 
 		base.ClientDisconnect( client, reason );
 	}
