@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace Storm;
 
-public partial class MyGame : GameManager
+public partial class StormGame : GameManager
 {
-	public MyGame()
+	public static StormGame Instance => (StormGame)Current;
+
+	public StormGame()
 	{
 	}
 
