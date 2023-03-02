@@ -1,6 +1,8 @@
-﻿namespace Sandbox;
+﻿using Sandbox;
 
-public static partial class StormEvent
+namespace Storm;
+
+public static partial class Event
 {
 	public static string Initialize = "Initialize";
 	public static string Shutdown = "Shutdown";

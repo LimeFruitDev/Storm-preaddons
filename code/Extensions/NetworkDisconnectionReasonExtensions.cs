@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Sandbox;
+using System.Collections.Generic;
 
-namespace Sandbox;
+namespace Storm;
 
 public static class NetworkDisconnectionReasonExtensions
 {

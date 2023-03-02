@@ -1,53 +1,55 @@
-﻿using Sandbox.Diagnostics;
+﻿using Sandbox;
+using Sandbox.Diagnostics;
 
-namespace Sandbox;
+namespace Storm;
 
-public partial class StormGame : GameManager
+public partial class Game : GameManager
 {
-	public static StormGame Instance => (StormGame)Current;
-	public static Logger Log = new( "Storm" );
+	public static Logger Log = new("Storm");
+	public static Game Instance => (Game)Current;
 
-	public StormGame()
+	public Game()
 	{
-		Event.Run( StormEvent.Initialize );
+		Sandbox.Event.Run( Event.Initialize );
 	}
 
 	public override void Shutdown()
 	{
-		Event.Run( StormEvent.Shutdown );
+		Sandbox.Event.Run( Event.Shutdown );
 
 		base.Shutdown();
 	}
 
 	public override void PostLevelLoaded()
 	{
-		Event.Run( StormEvent.PostLevelLoaded );
+		Sandbox.Event.Run( Event.PostLevelLoaded );
 
 		base.PostLevelLoaded();
 	}
 
 	public override void RenderHud()
 	{
-		Event.Run( StormEvent.RenderHud );
+		Sandbox.Event.Run( Event.RenderHud );
 
 		base.RenderHud();
 	}
 
 	public override void ClientJoined( IClient client )
 	{
-		Event.Run( StormEvent.ClientJoined, client );
+		Sandbox.Event.Run( Event.ClientJoined, client );
 
 		base.ClientJoined( client );
 	}
 
 	public override void ClientDisconnect( IClient client, NetworkDisconnectionReason reason )
 	{
-		Event.Run( StormEvent.ClientDisconnect, client, reason );
+		Sandbox.Event.Run( Event.ClientDisconnect, client, reason );
 
 		if ( reason != NetworkDisconnectionReason.DISCONNECT_BY_USER )
 		{
 			var reasonId = ((int)reason).ToString( "X8" );
-			Log.Warning( $"Client {client.Name}(${client.SteamId}) was disconnected with reason: {reason.GetName()} (0x{reasonId})." );
+			Log.Warning(
+				$"Client {client.Name}(${client.SteamId}) was disconnected with reason: {reason.GetName()} (0x{reasonId})." );
 		}
 
 		base.ClientDisconnect( client, reason );
