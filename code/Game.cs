@@ -10,40 +10,42 @@ public partial class Game : GameManager
 
 	public Game()
 	{
-		Sandbox.Event.Run( Event.Initialize );
+		Sandbox.Event.Run( "Storm.Initialize" );
+		Sandbox.Event.Run( Sandbox.Game.IsServer ? "Storm.Initialize.Server" : "Storm.Initialize.Client" );
 	}
 
 	public override void Shutdown()
 	{
-		Sandbox.Event.Run( Event.Shutdown );
+		Sandbox.Event.Run( "Storm.Shutdown" );
+		Sandbox.Event.Run( Sandbox.Game.IsServer ? "Storm.Shutdown.Server" : "Storm.Shutdown.Client" );
 
 		base.Shutdown();
 	}
 
 	public override void PostLevelLoaded()
 	{
-		Sandbox.Event.Run( Event.PostLevelLoaded );
+		Sandbox.Event.Run( "Storm.PostLevelLoaded" );
 
 		base.PostLevelLoaded();
 	}
 
 	public override void RenderHud()
 	{
-		Sandbox.Event.Run( Event.RenderHud );
+		Sandbox.Event.Run( "Storm.RenderHud" );
 
 		base.RenderHud();
 	}
 
 	public override void ClientJoined( IClient client )
 	{
-		Sandbox.Event.Run( Event.ClientJoined, client );
+		Sandbox.Event.Run( "Storm.ClientJoined", client );
 
 		base.ClientJoined( client );
 	}
 
 	public override void ClientDisconnect( IClient client, NetworkDisconnectionReason reason )
 	{
-		Sandbox.Event.Run( Event.ClientDisconnect, client, reason );
+		Sandbox.Event.Run( "Storm.ClientDisconnect", client, reason );
 
 		if ( reason != NetworkDisconnectionReason.DISCONNECT_BY_USER )
 		{
