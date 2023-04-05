@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using Sandbox;
+﻿using Sandbox;
 
 namespace Storm;
 
