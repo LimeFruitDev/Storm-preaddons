@@ -10,6 +10,9 @@ public partial class Game : GameManager
 
 	public Game()
 	{
+		// NOTE: This needs to run before Initialize so that the schema can get the event
+		SchemaLoader.LoadSchema();
+
 		Sandbox.Event.Run( "Storm.Initialize" );
 		Sandbox.Event.Run( Sandbox.Game.IsServer ? "Storm.Initialize.Server" : "Storm.Initialize.Client" );
 	}

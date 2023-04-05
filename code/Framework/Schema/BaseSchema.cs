@@ -18,6 +18,13 @@ public partial class BaseSchema : Entity
 		LoadDetails();
 	}
 
+	public virtual void Initialize() { }
+	public virtual void InitializeServer() { }
+	public virtual void InitializeClient() { }
+	public virtual void Shutdown() { }
+	public virtual void ShutdownServer() { }
+	public virtual void ShutdownClient() { }
+
 	private void LoadDetails()
 	{
 		if ( Details != null )

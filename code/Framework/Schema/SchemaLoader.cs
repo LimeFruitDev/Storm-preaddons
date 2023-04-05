@@ -2,7 +2,6 @@
 
 public static class SchemaLoader
 {
-	[Event.Initialize.Server]
 	public static void LoadSchema()
 	{
 		foreach ( var schemaType in TypeLibrary.GetTypes<BaseSchema>() )
